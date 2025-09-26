@@ -110,7 +110,7 @@ button {
   gap: 12px;
   align-items: stretch;
   position: relative;
-  padding: 14px 48px;
+  padding: 14px 15px;
 }
 
 /* Angled dotted sides */
@@ -118,13 +118,14 @@ button {
 .center-content::after {
   content: "";
   position: absolute;
-  top: 0;
+  top: 0px;
   height: 100%;
   width: 60px;
   pointer-events: none;
 }
 
 .center-content::before {
+  left: 1px;
   border-left: 2px dotted #e3e3e3;
   transform: skewX(15deg);
   transform-origin: top left;
@@ -195,11 +196,12 @@ button {
 
 /* Bottom row: nav links at left, phone at right */
 .bottom-row {
-  display: grid;
-  grid-template-columns: 1fr auto;
-  align-items: center;
+  display: flex;
+  /* grid-template-columns: 1fr auto; */
+  align-items: flex-start;
+  justify-content: space-between;
   gap: 20px;
-  padding: 10px;
+  padding: 30px;
 }
 
 .nav-links {
@@ -804,10 +806,11 @@ button {
 /* Hero Right Image */
 .hero-right {
   position: absolute;
+
   bottom: 18%;
   right: -3%;
-  max-width: 0px;
-  /* Default size on large screens */
+  max-width: 965px;
+  height: auto;
   width: 100%;
 }
 
@@ -815,6 +818,7 @@ button {
   width: 100%;
   height: auto;
   object-fit: contain;
+  padding-right: 50px;
   opacity: 0.9;
   transition: all 0.3s ease-in-out;
 }
@@ -828,7 +832,7 @@ button {
   }
 
   .hero-right {
-    max-width: 520px;
+    max-width: 965px;
     /* Keep original size */
     bottom: 18%;
     right: -3%;
@@ -846,7 +850,7 @@ button {
   }
 
   .hero-right {
-    max-width: 450px;
+    max-width: 700px;
     /* Slightly smaller */
     bottom: 15%;
     right: -2%;
@@ -878,7 +882,7 @@ button {
   .hero-right {
     position: static;
     margin-top: 30px;
-    max-width: 380px;
+    max-width: 500px;
   }
 }
 
@@ -900,7 +904,7 @@ button {
 
   .hero-right {
     position: static;
-    max-width: 320px;
+    max-width: 400px;
     margin-top: 30px;
   }
 }
@@ -922,7 +926,7 @@ button {
 
   .hero-right {
     position: static;
-    max-width: 260px;
+    max-width: 300px;
     margin: 20px auto 0;
   }
 }
