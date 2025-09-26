@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Centered Navbar</title>
+  <link rel="stylesheet" href="style.css" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@400;500&family=Oswald:wght@600&family=Kanit:wght@500&display=swap"
+    rel="stylesheet" />
+</head>
+
+<body>
+  <!-- ================= HEADER ================= -->
+  <header class="navbar">
+    <div class="navbar-container">
+      <!-- Left: Logo -->
+      <div class="logo">
+        <img src="assets/brand-logo.png" alt="Logo" />
+      </div>
+
+      <!-- Center: Info + Navigation (Desktop) -->
+      <div class="center-content">
+        <!-- Top Row: Contact Info + Socials -->
+        <div class="top-row">
+          <div class="contact-info">
+            <div class="info-item">
+              <span class="icon"><img src="assets/mail.svg" alt="mail" /></span>
+              <span>support@gmail.com</span>
+            </div>
+            <div class="info-item">
+              <span class="icon"><img src="assets/clock.svg" alt="clock" /></span>
+              <span>Mon - Fri: 10:00 - 18:00, Sat-Sun: 10:00 - 14:00</span>
+            </div>
+          </div>
+          <div class="social-section">
+            <span class="social-text">Visit our social pages</span>
+            <div class="social-icons">
+              <span class="icon"><img src="assets/X.svg" alt="X" /></span>
+              <span class="icon"><img src="assets/f_1_.svg" alt="Facebook" /></span>
+              <span class="icon"><img src="assets/Y.svg" alt="YouTube" /></span>
+              <span class="icon"><img src="assets/P.svg" alt="Pinterest" /></span>
+              <span class="icon"><img src="assets/I.svg" alt="Instagram" /></span>
+              <span class="icon"><img src="assets/fi_542689.svg" alt="Email" /></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bottom Row: Nav + Telephone -->
+        <div class="bottom-row">
+          <nav class="nav-links">
+            <a href="#">Home</a>
+            <a href="#">About</a>
+            <a href="#">Service</a>
+            <a href="#">How it Works</a>
+            <a href="#">Testimonials</a>
+            <a href="#">FAQ's</a>
+          </nav>
+          <span class="phone"><img src="assets/tele.svg" alt="telephone" />+259 (0) 256 215</span>
+        </div>
+      </div>
+
+      <!-- Right: Order Button -->
+      <div class="order-btn">
+        <button>Order Now</button>
+      </div>
+
+      <!-- Hamburger Menu Button -->
+      <button class="hamburger" id="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+
+    <!-- Navigation Menu (Mobile & Desktop) -->
+    <div class="nav-menu" id="navMenu">
+      <div class="nav-content">
+        <!-- Navigation Links -->
+        <nav class="nav-links">
+          <a href="#">Home</a>
+          <a href="#">About</a>
+          <a href="#">Service</a>
+          <a href="#">How it Works</a>
+          <a href="#">Testimonials</a>
+          <a href="#">FAQ's</a>
+        </nav>
+
+        <!-- Contact Info -->
+        <div class="nav-contact">
+          <div class="info-item">
+            <span class="icon"><img src="assets/tele.svg" alt="telephone" /></span>
+            <span>+259 (0) 256 215</span>
+          </div>
+          <div class="info-item">
+            <span class="icon"><img src="assets/mail.svg" alt="mail" /></span>
+            <span>support@gmail.com</span>
+          </div>
+        </div>
+
+        <!-- Social Icons -->
+        <div class="nav-social">
+          <span class="social-text">Visit our social pages</span>
+          <div class="social-icons">
+            <span class="icon"><img src="assets/X.svg" alt="X"></span>
+            <span class="icon"><img src="assets/f_1_.svg" alt="Facebook"></span>
+            <span class="icon"><img src="assets/Y.svg" alt="YouTube"></span>
+            <span class="icon"><img src="assets/P.svg" alt="Pinterest"></span>
+            <span class="icon"><img src="assets/I.svg" alt="Instagram"></span>
+            <span class="icon"><img src="assets/fi_542689.svg" alt="Email"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="hero-container">
+      <div class="hero-content">
+        <div class="hero-left">
+          <p class="hero-subtitle">
+            <span class="dot"></span>
+            Optimize Performance and Recovery with Spartan Fit Nutrition's Ultimate Race Kit
+          </p>
+          <h1>
+            Race with Confidence and <br>
+            <span>Unlock Your Spartan Potential</span>
+          </h1>
+          <button class="hero-btn">Order Now</button>
+        </div>
+
+        <div class="hero-right">
+          <img src="assets/2k24.png" alt="2k24">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
