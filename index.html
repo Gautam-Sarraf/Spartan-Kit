@@ -9,6 +9,9 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@400;500&family=Oswald:wght@600&family=Kanit:wght@500&display=swap"
     rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500;600;700&display=swap"
+    rel="stylesheet">
+
 </head>
 
 <body>
@@ -62,7 +65,7 @@
       </div>
 
       <!-- Right: Order Button -->
-      <div class="order-btn">
+      <div class="order-btn" id="orderBtn">
         <button>Order Now</button>
       </div>
 
@@ -76,6 +79,9 @@
 
     <!-- Navigation Menu (Mobile & Desktop) -->
     <div class="nav-menu" id="navMenu">
+      <div class="nav-logo">
+        <img src="assets/brand-logo.png" alt="Logo in drawer" />
+      </div>
       <div class="nav-content">
         <!-- Navigation Links -->
         <nav class="nav-links">
@@ -111,6 +117,11 @@
             <span class="icon"><img src="assets/fi_542689.svg" alt="Email"></span>
           </div>
         </div>
+
+        <!-- Drawer CTA at bottom-right -->
+        <div class="drawer-cta">
+          <button class="order-btn--drawer">Order Now</button>
+        </div>
       </div>
     </div>
   </header>
@@ -133,6 +144,335 @@
         <div class="hero-right">
           <img src="assets/2k24.png" alt="2k24">
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= FEATURES SECTION ================= -->
+  <section id="features" class="features">
+    <div class="features-container">
+      <!-- Section intro -->
+      <div class="features-header">
+        <span class="features-kicker">Benefits & Features</span>
+        <h2 class="features-title">Why Choose the Spartan Race Kit?</h2>
+      </div>
+
+      <!-- Cards grid -->
+      <div class="features-grid">
+        <!-- Card 1 -->
+        <article class="feature-card">
+          <div class="feature-icon" aria-hidden="true"><img src="assets/icon1.svg" alt="icon1"></div>
+          <div class="feature-meta">
+            <span class="dot red"></span>
+            <span class="meta-text">Healthier Life</span>
+          </div>
+          <h3 class="feature-heading">Spartan-Specific Design</h3>
+          <p class="feature-desc">Equipped with robust and long–lasting gear to withstand the most intense training
+            sessions and races.</p>
+          <a href="#" class="feature-link">Read More</a>
+          <div class="feature-foot"></div>
+        </article>
+
+        <!-- Card 2 -->
+        <article class="feature-card">
+          <div class="feature-icon" aria-hidden="true"><img src="assets/icon2.svg" alt="icon2"></div>
+          <div class="feature-meta">
+            <span class="dot red"></span>
+            <span class="meta-text">Healthier Life</span>
+          </div>
+          <h3 class="feature-heading">High-Quality Durability</h3>
+          <p class="feature-desc">Custom-formulated supplements to maximize endurance, muscle growth, and recovery,
+            designed specifically for...</p>
+          <a href="#" class="feature-link">Read More</a>
+          <div class="feature-foot"></div>
+        </article>
+
+        <!-- Card 3 (Dark) -->
+        <article class="feature-card">
+          <div class="feature-icon" aria-hidden="true"><img src="assets/icon3.svg" alt="icon3"></div>
+          <div class="feature-meta">
+            <span class="dot red"></span>
+            <span class="meta-text">Healthier Life</span>
+          </div>
+          <h3 class="feature-heading">Tailored Performance Nutrition</h3>
+          <p class="feature-desc">Custom–formulated supplements to maximize endurance, muscle growth, and recovery,
+            designed specifically for...</p>
+          <a href="#" class="feature-link">Read More</a>
+          <div class="feature-foot"></div>
+        </article>
+        <div class="bottom-cards">
+          <!-- Card 4 -->
+          <article class="feature-card">
+            <div class="feature-icon" aria-hidden="true"><img src="assets/icon4.svg" alt="icon4"></div>
+            <div class="feature-meta">
+              <span class="dot red"></span>
+              <span class="meta-text">Healthier Life</span>
+            </div>
+            <h3 class="feature-heading">Complete Race Kit</h3>
+            <p class="feature-desc">Contains all the essential tools, nutrition, and gear to ensure you're fully
+              prepared for your race from start...</p>
+            <a href="#" class="feature-link">Read More</a>
+            <div class="feature-foot"></div>
+          </article>
+
+          <!-- Card 5 -->
+          <article class="feature-card">
+            <div class="feature-icon" aria-hidden="true"><img src="assets/icon5.svg" alt="icon5"></div>
+            <div class="feature-meta">
+              <span class="dot red"></span>
+              <span class="meta-text">Healthier Life</span>
+            </div>
+            <h3 class="feature-heading">Free Training Program</h3>
+            <p class="feature-desc">Gain access to a professional training plan designed to help you achieve your peak
+              physical condition for the race.</p>
+            <a href="#" class="feature-link">Read More</a>
+            <div class="feature-foot"></div>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= PRODUCTS SECTION ================= -->
+  <section id="products" class="products">
+    <!-- Top Brush -->
+    <img src="assets/product-bg-top.png" alt="Top Brush" class="products-top" />
+
+    <!-- Background runner + overlay -->
+    <div class="products-inner">
+      <div class="products-overlay"></div>
+
+      <div class="products-header">
+        <span class="products-kicker">PRODUCT HIGHLIGHTS</span>
+        <h2 class="products-title">What's Inside the Spartan Race Kit?</h2>
+      </div>
+
+      <div class="products-grid">
+        <article class="product-card">
+          <div class="product-media">
+            <img src="assets/can.jpg" alt="Supplements" />
+          </div>
+          <h3 class="product-heading">Supplements</h3>
+          <p class="product-desc">
+            Enhance endurance, strength, and recovery with supplements designed for peak race performance.
+          </p>
+          <a href="#" class="product-link">Read More <span class="arrow">→</span></a>
+        </article>
+
+        <article class="product-card">
+          <div class="product-media">
+            <img src="assets/phone.png" alt="Coaching" />
+          </div>
+          <h3 class="product-heading">Coaching | Health & Wellness</h3>
+          <p class="product-desc">
+            Optimize readiness with expert coaching and personalized wellness plans.
+          </p>
+          <a href="#" class="product-link">Read More <span class="arrow">→</span></a>
+        </article>
+
+        <article class="product-card">
+          <div class="product-media">
+            <img src="assets/merch.png" alt="Gear" />
+          </div>
+          <h3 class="product-heading">Gear & Equipment</h3>
+          <p class="product-desc">
+            Durable gear and equipment designed to enhance comfort and performance during races.
+          </p>
+          <a href="#" class="product-link">Read More <span class="arrow">→</span></a>
+        </article>
+
+        <article class="product-card">
+          <div class="product-media">
+            <img src="assets/food.png" alt="Nutrition" id="prod4" />
+          </div>
+          <h3 class="product-heading">Eat | Nutrition & Diet Plans</h3>
+          <p class="product-desc">
+            Tailored nutrition plans to fuel your training, performance, and recovery.
+          </p>
+          <a href="#" class="product-link">Read More <span class="arrow">→</span></a>
+        </article>
+      </div>
+    </div>
+
+    <!-- Bottom Brush -->
+    <img src="assets/product-bg-bottom.png" alt="Bottom Brush" class="products-bottom" />
+  </section>
+
+
+
+  <!-- testimonial section -->
+  <section class="testimonial-section">
+    <div class="testimonial-container">
+      <!-- Background Image -->
+      <div class="testimonial-bg">
+        <img src="assets/w-workout.png" alt="Workout Woman" />
+      </div>
+
+      <!-- Testimonial Card -->
+      <div class="testimonial-card">
+        <span class="feedback-badge">Feedbacks</span>
+        <h2 class="testimonial-title">Trusted Testimonials</h2>
+
+        <div class="testimonial-content">
+          <div class="quote">
+            <img src="assets/rugby-pl.jpg" alt="User Avatar" class="avatar" />
+            <p class="quote-text">
+              "The Spartan Race kit was a game changer! My endurance improved, and I felt
+              stronger throughout the race!"
+            </p>
+            <div class="stars">
+              ★★★★★
+            </div>
+          </div>
+
+          <!-- User List -->
+          <div class="user-list">
+            <div class="user">Andrew Daniel <span>Gym Student</span></div>
+            <div class="user active">John D. <span>Spartan Racer</span></div>
+            <div class="user">William Henry <span>Enthusiast</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How it works section -->
+  <section class="workflow-section">
+    <div class="workflow-container">
+      <!-- Header -->
+      <div class="work-header">
+        <span class="subtitle-pill">How It Works</span>
+        <h1 class="main-title">How It Works</h1>
+      </div>
+
+      <!-- Steps Grid -->
+      <div class="steps-grid">
+
+        <!-- STEP 1 -->
+        <div class="step">
+          <!-- Number Indicator (Centered on the left edge on desktop/moved to top-right on mobile) -->
+          <div class="step-number">1</div>
+
+          <!-- Card (Outer White Padding, Half Red Border) -->
+          <div class="card">
+            <!-- Card Content (Inner Dark Area) -->
+            <div class="card-content">
+              <div class="icon-wrapper">
+                <img src="assets/box.png" alt="box">
+              </div>
+              <p>Receive your Spartan Race kit packed with high-quality, durable gear.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Arrow Connector 1 -->
+        <div class="step-connector"><img src="assets/arrow.svg" alt="arrow"></div>
+
+        <!-- STEP 2 -->
+        <div class="step">
+          <!-- Number Indicator -->
+          <div class="step-number">2</div>
+
+          <div class="card">
+            <div class="card-content">
+              <div class="icon-wrapper">
+                <img src="assets/list.png" alt="list">
+              </div>
+              <p>Follow the included FREE training program to prepare for your race.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Arrow Connector 2 -->
+        <div class="step-connector">
+          <img src="assets/arrow.svg" alt="arrow">
+        </div>
+
+        <!-- STEP 3 -->
+        <div class="step">
+          <!-- Number Indicator -->
+          <div class="step-number">3</div>
+
+          <div class="card">
+            <div class="card-content">
+              <div class="icon-wrapper">
+                <img src="assets/jar.png" alt="jar">
+              </div>
+              <p>Use the tailored nutrition to enhance endurance, strength, and mental focus.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Arrow Connector 3 -->
+        <div class="step-connector">
+          <img src="assets/arrow.svg" alt="arrow">
+        </div>
+
+        <!-- STEP 4 -->
+        <div class="step">
+          <!-- Number Indicator -->
+          <div class="step-number">4</div>
+
+          <div class="card">
+            <div class="card-content">
+              <div class="icon-wrapper">
+                <img src="assets/goal.png" alt="goal">
+              </div>
+              <p>Crush your Spartan race with confidence and peak performance.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="order-now">
+    <div class="order-section">
+      <!-- Top Brush -->
+      <img src="assets/order-top-bg.png" alt="Top Brush" class="order-top" />
+
+      <!-- Middle Background with content -->
+      <div class="content-block">
+        <div class="overlay"></div>
+        <div class="content-wrapper">
+          <h1 class="title">RACE WITH CONFIDENCE AND UNLOCK YOUR SPARTAN POTENTIAL</h1>
+          <h2 class="subtitle">LIMITED STOCK AVAILABLE – DON'T MISS OUT!</h2>
+          <p class="guarantee">Free Shipping & 30-Day Money-Back Guarantee</p>
+          <button class="cta-button">Order Now</button>
+        </div>
+      </div>
+
+      <!-- Bottom Brush -->
+      <img src="assets/order-bottom-bg.png" alt="Bottom Brush" class="order-bottom" />
+    </div>
+  </section>
+
+  <section class="faq-section">
+    <div class="faq-container">
+      <!-- Header -->
+      <header class="faq-header">
+        <span class="faq-tag">FAQ'S</span>
+        <h1 class="faq-title">Frequently Asked Questions</h1>
+      </header>
+
+      <!-- Content Area -->
+      <div class="faq-content">
+
+        <!-- FAQ Question List (Left Column) -->
+        <ul class="faq-list" id="faq-question-list">
+          <!-- Questions will be populated by JavaScript -->
+        </ul>
+
+        <!-- Answer Display Card (Right Column) -->
+        <div class="faq-display-card">
+          <h2 class="faq-display-question" id="faq-display-question"></h2>
+          <p class="faq-display-answer" id="faq-display-answer"></p>
+          <div id="faq-placeholder" style="color:var(--faq-light-text);">
+            Click on a question to see the detailed answer here.
+          </div>
+        </div>
+
       </div>
     </div>
   </section>

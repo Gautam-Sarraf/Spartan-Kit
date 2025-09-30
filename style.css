@@ -22,6 +22,15 @@ button {
   font-family: "Kanit", sans-serif;
 }
 
+.hidden {
+  display: none;
+}
+
+/* Keep header layout stable when hiding the logo during drawer open */
+.logo-invisible {
+  visibility: hidden;
+}
+
 :root {
   /* === Color Palette === */
   --color-primary: #000000;
@@ -156,7 +165,7 @@ button {
   top: 0;
   left: 0;
   width: 100%;
-  height: 2px;
+  height: 5px;
   border-bottom: 2px dotted #e3e3e3;
 }
 
@@ -201,7 +210,10 @@ button {
   align-items: flex-start;
   justify-content: space-between;
   gap: 20px;
-  padding: 30px;
+  padding: 0px;
+  padding-left: 30px;
+  padding-right: 30px;
+  padding-bottom: 30px;
 }
 
 .nav-links {
@@ -592,6 +604,10 @@ button {
     gap: 15px;
     text-align: center;
   }
+
+  .hero-right {
+    transform: rotate(90deg);
+  }
 }
 
 /* Extra-small devices (phones, less than 600px) */
@@ -611,6 +627,10 @@ button {
   .navbar-container {
     min-height: 50px;
     gap: 10px;
+  }
+
+  .hero-right {
+    transform: rotate(90deg);
   }
 
   .logo img {
@@ -693,16 +713,84 @@ button {
     display: none;
   }
 
+  /* Keep hamburger inside navbar flow, aligned with logo + order button */
   .hamburger {
     display: flex;
+    position: relative;
+    top: auto;
+    right: auto;
+    z-index: 1000;
   }
 
+  /* Left drawer overlay */
   .nav-menu {
-    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: auto;
+    height: 100vh;
+    width: 80%;
+    max-width: 220px;
+    margin: 0;
+    background: #fff;
+    z-index: 3000;
+    padding-top: 70px; /* make room for drawer logo */
+    transform: translate3d(-100%, 0, 0);
+    transition: transform 0.35s ease;
+    display: block;
+    border: 1px solid #ccc;
+    scroll-behavior: unset;
+  }
+
+  /* Drawer logo top-left */
+  .nav-logo {
+    position: absolute;
+    top: 14px;
+    left: 14px;
+    z-index: 1;
+  }
+
+  .nav-logo img {
+    width: 46px;
+    height: 46px;
+    object-fit: contain;
+    display: block;
   }
 
   .nav-menu.active {
-    display: block;
+    transform: translate3d(0, 0, 0);
+  }
+
+  .nav-content {
+    align-items: flex-end;
+    padding: 24px 20px 24px 20px; /* extra top padding handled on container */
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    box-sizing: border-box;
+  }
+
+  .nav-links {
+    flex-direction: column;
+    gap: 16px;
+    text-align: right;
+    align-items: flex-end;
+    width: 100%;
+  }
+
+  .order-btn--drawer {
+    background: var(--color-accent);
+    color: #fff;
+    padding: 12px 22px;
+    border-radius: 10px;
+    transform: skew(-8deg);
+    transition: background .2s ease, transform .2s ease;
+  }
+
+  .order-btn--drawer:hover {
+    background: #d81b1b;
+    transform: translateY(-2px) skew(-8deg);
   }
 }
 
@@ -717,6 +805,92 @@ button {
 
   .nav-menu {
     display: none;
+  }
+}
+
+@media (max-width: 992px) {
+
+  .center-content::before,
+  .center-content::after {
+    display: none;
+  }
+
+  .top-row::after {
+    display: none;
+  }
+
+  .top-row {
+    justify-content: space-between !important;
+    text-align: left;
+    align-items: left;
+  }
+
+  .contact-info {
+    gap: 60px;
+  }
+}
+
+@media (max-width: 1284px) {
+  .top-row {
+    padding-left: 40px;
+    justify-content: center;
+  }
+
+  /* .top-row .contact-info {
+    gap: 20px;
+  } */
+  .bottom-row {
+    gap: 50px;
+    justify-content: center;
+  }
+
+  .bottom-row .nav-links {
+    gap: 5px;
+    margin-left: 20px;
+  }
+
+  .top-row::after {
+    width: 98%;
+  }
+
+  .center-content::before {
+    left: 22px;
+  }
+
+}
+
+@media (max-width: 1175px) {
+  .bottom-row {
+    gap: 5px;
+  }
+
+  .bottom-row .nav-links {
+    gap: 0px;
+
+  }
+}
+
+@media (max-width: 1024px) {
+  .bottom-row {
+    gap: 5px;
+    justify-content: space-between;
+    padding-left: 0px;
+  }
+
+  .nav-links {
+    gap: 0px !important;
+  }
+
+  .nav-links a {
+    font-size: 14px;
+  }
+
+  .center-content::before {
+    left: -5px;
+  }
+
+  .center-content::after {
+    right: -5px;
   }
 }
 
@@ -755,11 +929,12 @@ button {
 }
 
 .hero-subtitle {
+  font-family: 'Oswald', sans-serif;
   display: flex;
   align-items: center;
   font-size: 0.9rem;
-  font-weight: 500;
-  letter-spacing: 1px;
+  font-weight: 400;
+  letter-spacing: 0%;
   text-transform: uppercase;
 }
 
@@ -773,10 +948,11 @@ button {
 }
 
 .hero-left h1 {
+  font-family: 'Oswald';
   font-size: 48px;
   line-height: 1.2;
-  letter-spacing: 4px;
-  font-weight: 700;
+  letter-spacing: 4%;
+  font-weight: 500;
   margin-bottom: 25px;
 }
 
@@ -784,7 +960,6 @@ button {
   font-weight: 300;
   display: block;
   line-height: 1.2;
-  letter-spacing: 0px;
 }
 
 .hero-btn {
@@ -929,4 +1104,1594 @@ button {
     max-width: 300px;
     margin: 20px auto 0;
   }
+}
+
+
+
+/* ================= FEATURES SECTION ================= */
+.features {
+  background: #fff;
+  padding: 84px 16px 110px;
+}
+
+.features-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Header */
+.features-header {
+  text-align: center;
+  margin-bottom: 38px;
+}
+
+.features-kicker {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  color: var(--color-accent);
+}
+
+.features-title {
+  font-family: "Oswald";
+  font-size: 48px;
+  line-height: 58px;
+  font-style: medium;
+  margin-top: 10px;
+  color: var(--color-primary);
+}
+
+/* Grid */
+.features-grid {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  justify-content: center;
+  gap: 60px;
+  max-width: 1280px;
+  width: 100%;
+  margin-top: 24px;
+}
+
+/* Let individual cards size nicely for 3-up rows when space allows */
+.features-grid > .feature-card {
+  flex: 1 1 360px;
+}
+
+/* Ensure the bottom group spans its own row and centers its inner cards */
+.features-grid > .bottom-cards {
+  /* Flatten wrapper so its children behave like direct flex items */
+  display: contents;
+}
+
+/* Card */
+.feature-card {
+  position: relative;
+  background: #ffffff;
+  /* Use min-height to preserve desktop proportions but allow growth */
+  min-height: 419px;
+  border-radius: 18px;
+  /* Increase bottom padding to make room for absolute link and foot */
+  padding: 28px 28px 120px;
+  /* extra bottom for foot */
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.06), 0 2px 8px rgba(0, 0, 0, 0.05);
+  border: 1px solid #efefef;
+  max-width: 379px;
+  width: 100%;
+}
+
+.feature-card:hover {
+  background: #0b0b0b;
+  color: #ffffff;
+  transition: 0.3s ease-in-out;
+}
+
+.feature-card:hover .feature-heading {
+  color: #ffffff;
+}
+
+.feature-card:hover .feature-desc {
+  color: #ffffff;
+}
+
+/* Icon placeholder — replace inner content with your SVG */
+.feature-icon {
+  width: 60px;
+  height: 60px;
+  border-radius: 14px;
+  display: grid;
+  place-items: center;
+  margin-bottom: 25px;
+}
+
+
+/* Meta */
+.feature-meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.dot.red {
+  background: var(--color-accent);
+}
+
+.meta-text {
+  font-family: "Oswald";
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 21px;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  color: var(--color-accent);
+}
+
+
+.feature-heading {
+  font-family: "Oswald";
+  font-size: 24px;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 31.99px;
+  letter-spacing: 0%;
+  color: var(--color-primary);
+  margin: 6px 0 20px;
+  max-width: 100%;
+}
+
+
+
+.feature-desc {
+  font-family: "Kumbh Sans";
+  font-size: 15px;
+  color: #7B7E86;
+  line-height: 150%;
+  letter-spacing: 0%;
+  /* margin-bottom: 20px; */
+}
+
+
+.feature-link {
+  display: inline-block;
+  margin-top: 14px;
+  color: #e42525;
+  font-weight: 800;
+  font-size: 14px;
+  border-bottom: 1px solid #e42525;
+  position: absolute;
+  bottom: 80px;
+}
+
+.feature-card.dark .feature-link {
+  color: #ff5555;
+}
+
+/* Bottom rounded foot/shadow bar */
+.feature-foot {
+  position: absolute;
+  left: 50%;
+  /* bottom: 14px; */
+  transform: translateX(-50%);
+  width: 100%;
+  height: 40px;
+  bottom: 0;
+  background: #0f0f10;
+  border-bottom-left-radius: 12px;
+  border-bottom-right-radius: 12px;
+}
+
+.feature-card.dark .feature-foot {
+  background: #000;
+}
+
+/* ===== Features Responsiveness ===== */
+/* Extra-small devices (phones, less than 600px) */
+@media only screen and (max-width: 600px) {
+  .features {
+    padding: 64px 14px 90px;
+  }
+
+  .features-title {
+    font-size: 30px;
+  }
+
+  .features-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .features-grid > .feature-card {
+    flex: 1 1 100%;
+    max-width: 100%;
+  }
+
+
+  .feature-card {
+    max-width: 100%;
+    /* Allow card to grow naturally on small screens */
+    min-height: unset;
+    padding-bottom: 140px;
+  }
+
+  .bottom-cards {
+    /* Flatten wrapper at small sizes as well */
+    display: contents;
+  }
+}
+
+/* Small devices (≥600px) */
+@media only screen and (min-width: 600px) and (max-width: 991.98px) {
+  .features-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 36px;
+    justify-content: center;
+    align-items: stretch;
+  }
+
+  /* Two columns on tablet width */
+  .features-grid > .feature-card {
+    flex: 1 1 calc(50% - 36px);
+    max-width: calc(50% - 36px);
+  }
+
+  /* Unify sizing across all five cards on tablet */
+  .features-grid > .feature-card {
+    min-height: unset;
+    padding-bottom: 130px;
+  }
+}
+
+/* Medium devices (≥768px) */
+@media only screen and (min-width: 768px) {
+  .features-title {
+    font-size: 36px;
+  }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+  .features-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 60px;
+  }
+
+  /* Back to 3-up layout on desktop */
+  .features-grid > .feature-card {
+    flex: 1 1 360px;
+    max-width: 379px;
+  }
+}
+ 
+
+/* Extra-large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+  .features-container {
+    max-width: 1440px;
+    align-items: center;
+    justify-items: center;
+  }
+
+  .features-title {
+    font-size: 46px;
+  }
+}
+
+
+/* ================= PRODUCTS SECTION ================= */
+/* Paste from here (keep your existing code above intact) */
+
+/* Section base */
+.products {
+  position: relative;
+  background: url("assets/product-bg.jpg") center/cover no-repeat;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Top & Bottom Brushes */
+.products-top,
+.products-bottom {
+  width: 100%;
+  height: auto;
+  display: block;
+  pointer-events: none;
+}
+
+/* Inner container with overlay */
+.products-inner {
+  position: relative;
+  width: 100%;
+  max-width: 1360px;
+  padding: 110px 16px 130px;
+  z-index: 1;
+}
+
+.products-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.65);
+  z-index: 0;
+}
+
+/* Header */
+.products-header {
+  font-family: "Oswald", sans-serif;
+  text-align: center;
+  margin-bottom: 50px;
+  position: relative;
+  z-index: 1;
+}
+
+.products-kicker {
+  display: inline-block;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.7px;
+  text-transform: uppercase;
+  color: #e42525;
+  background: #ffffff;
+  padding: 6px 12px;
+  border-radius: 9999px;
+}
+
+.products-title {
+  font-size: 48px;
+  line-height: 58px;
+  font-weight: 500;
+  margin-top: 12px;
+  color: #ffffff;
+}
+
+/* Grid */
+.products-grid {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 40px;
+  padding: 0 30px;
+  justify-items: center;
+}
+
+/* Card */
+.product-card {
+  position: relative;
+  background: #0f0f10;
+  border-radius: 18px;
+  padding: 26px 24px 66px;
+  box-shadow: 2px 6px 40px 0px #ffffff1a;
+  width: 100%;
+  max-width: 290px;
+  height: auto;
+  text-align: left;
+}
+
+.product-media {
+  width: 140px;
+  height: 140px;
+  border-radius: 10px;
+  margin-bottom: 18px;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+}
+
+.product-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: rotate(-4deg);
+  object-position: right;
+}
+
+#prod4 {
+  object-position: left !important;
+}
+
+.product-heading {
+  font-family: "Oswald", sans-serif;
+  font-size: 22px;
+  line-height: 1.3;
+  margin-bottom: 10px;
+  color: #ffffff;
+}
+
+.product-desc {
+  font-family: "Kumbh Sans", sans-serif;
+  font-size: 15px;
+  color: #7b7e86;
+  line-height: 1.5;
+}
+
+.product-link {
+  display: inline-block;
+  line-height: 120%;
+  color: var(--color-accent, #e42525);
+  font-weight: 500;
+  font-size: 16px;
+  position: absolute;
+  bottom: 20px;
+}
+
+/* ===== Responsiveness ===== */
+@media (max-width: 600px) {
+  .products-inner {
+    padding: 84px 14px 100px;
+  }
+
+  .products-title {
+    font-size: 30px;
+    line-height: 1.3;
+  }
+
+  .products-grid {
+    grid-template-columns: 1fr;
+    gap: 18px;
+    padding: 0;
+  }
+
+  .product-card {
+    max-width: 100%;
+  }
+}
+
+@media (min-width: 600px) and (max-width: 991.98px) {
+  .products-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+}
+
+@media (min-width: 992px) and (max-width: 1199.98px) {
+  .products-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 1200px) {
+  .products-inner {
+    max-width: 1440px;
+  }
+}
+
+@media (min-width: 1500px) {
+  .products-inner {
+    max-width: 2000px;
+    padding: 100px;
+  }
+
+  .products-grid {
+    padding: 0 60px;
+  }
+
+  .product-card {
+    transform: scale(1.1);
+  }
+}
+
+
+
+/* testimonial section */
+
+/* Global Section Styling */
+.testimonial-section {
+  width: 100%;
+  padding: 60px 20px;
+  /* Horizontal padding matches other sections */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #fff;
+  margin-top: 50px;
+}
+
+.testimonial-container {
+  position: relative;
+  max-width: 1279px;
+  width: 100%;
+}
+
+/* Background Image */
+.testimonial-bg {
+  position: relative;
+  width: 80%;
+  overflow: hidden;
+}
+
+.testimonial-bg img {
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  display: block;
+}
+
+/* Testimonial Card */
+.testimonial-card {
+  background-image: url(assets/testi-bg.png);
+  background-size: cover;
+  background-position: center;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  transform: translateY(-50%);
+  color: #fff;
+  border-radius: 30px;
+  padding: 80px 30px 110px;
+  max-width: 775px;
+  width: 100%;
+  height: auto;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
+  text-align: center;
+}
+
+/* Badge */
+.feedback-badge {
+  font-family: "Kanit";
+  background: #fdfcfc;
+  color: var(--color-accent);
+  font-size: 14px;
+  font-weight: bold;
+  padding: 6px 14px;
+  border-radius: 20px;
+  display: inline-block;
+  margin-bottom: 30px;
+  text-transform: uppercase;
+}
+
+/* Title */
+.testimonial-title {
+  font-family: "Oswald";
+  font-size: 48px;
+  margin-bottom: 20px;
+  font-weight: 700;
+}
+
+/* Quote Section */
+.testimonial-content {
+  text-align: center;
+  position: relative;
+  overflow: hidden; /* viewport for slide animation */
+}
+
+.avatar {
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  margin-bottom: 30px;
+  object-fit: cover;
+}
+
+.quote-text {
+  font-family: "Kumbh Sans";
+  font-size: 16px;
+  line-height: 140%;
+  color: #7B7E86;
+  margin-bottom: 30px;
+}
+
+.stars {
+  color: #ff3c3c;
+  font-size: 20px;
+  letter-spacing: 2px;
+  margin-bottom: 30px;
+}
+
+/* User List */
+.user-list {
+  display: flex;
+  justify-content: space-around;
+  gap: 10px;
+}
+
+.user {
+  font-family: "Kanit";
+  background: #2c2c2c;
+  padding: 18px 30px;
+  border-radius: 8px;
+  font-size: 20px;
+  transition: 0.3s ease;
+  cursor: pointer;
+  max-width: 200px;
+  width: 100%;
+  color: #ccc;
+  text-align: center;
+}
+
+.user span {
+  display: block;
+  font-size: 12px;
+  color: #7B7E86;
+  text-transform: uppercase;
+}
+
+.user.active {
+  background: var(--color-accent);
+  color: white;
+}
+
+.user.active span {
+  color: white;
+}
+
+.user:hover {
+  background: #ff3c3c;
+  color: rgb(250, 245, 245);
+}
+
+.user:hover span {
+  color: white;
+}
+
+/* --- Testimonial carousel animations --- */
+.quote {
+  will-change: transform, opacity;
+}
+
+@keyframes slideOutLeft {
+  0% { transform: translateX(0); opacity: 1; }
+  100% { transform: translateX(-30%); opacity: 0; }
+}
+
+@keyframes slideInRight {
+  0% { transform: translateX(30%); opacity: 0; }
+  100% { transform: translateX(0); opacity: 1; }
+}
+
+.slide-out-left {
+  animation: slideOutLeft 280ms ease forwards;
+}
+
+.slide-in-right {
+  animation: slideInRight 280ms ease forwards;
+}
+
+
+
+/* ===== Testimonial Responsiveness ===== */
+
+/* Ultra-wide desktops (≥1500px): slight upscale while keeping proportions */
+@media (min-width: 1500px) {
+  .testimonial-container {
+    max-width: 1440px;
+  }
+
+  .testimonial-bg {
+    width: 72%;
+  }
+
+  .testimonial-card {
+    max-width: 880px;
+    padding: 96px 40px;
+  }
+
+  .testimonial-title {
+    font-size: 56px;
+  }
+
+  .quote-text {
+    font-size: 18px;
+  }
+
+  .user {
+    font-size: 22px;
+  }
+}
+
+/* Large desktops (1200px–1499px): current look with a bit more breathing room */
+@media (min-width: 1200px) and (max-width: 1499.98px) {
+  .testimonial-bg {
+    width: 76%;
+  }
+
+  .testimonial-card {
+    max-width: 820px;
+    padding: 90px 36px;
+  }
+
+  .testimonial-title {
+    font-size: 52px;
+  }
+
+  .quote-text {
+    font-size: 17px;
+  }
+}
+
+/* Small desktops / landscape tablets (993px–1199px): keep overlap, tighten spacing */
+@media (min-width: 993px) and (max-width: 1199.98px) {
+  .testimonial-bg {
+    width: 78%;
+  }
+
+  .testimonial-card {
+    max-width: 700px;
+    padding: 72px 30px;
+  }
+
+  .testimonial-title {
+    font-size: 42px;
+  }
+
+  .avatar {
+    width: 100px;
+    height: 100px;
+  }
+
+  .user {
+    font-size: 18px;
+    padding: 16px 24px;
+    max-width: 180px;
+  }
+
+  .feedback-badge {
+    font-size: 13px;
+    padding: 6px 12px;
+  }
+}
+
+/* Tablets and down (≤992px): card becomes a block below image; refine spacing */
+@media (max-width: 992px) {
+  .testimonial-section {
+    padding: 50px 16px;
+  }
+
+  .testimonial-container {
+    max-width: 920px;
+  }
+
+  .testimonial-bg {
+    width: 100%;
+  }
+
+  .testimonial-card {
+    position: relative;
+    top: auto;
+    right: auto;
+    transform: none;
+    max-width: 100%;
+    margin-top: 24px;
+    padding: 56px 28px;
+  }
+
+  .testimonial-title {
+    font-size: 36px;
+  }
+
+  .avatar {
+    width: 96px;
+    height: 96px;
+  }
+
+  .quote-text {
+    font-size: 16px;
+  }
+
+  .user-list {
+    gap: 10px;
+  }
+
+  .user {
+    font-size: 18px;
+    padding: 14px 22px;
+    max-width: 100%;
+  }
+}
+
+/* Small tablets (768px–899px): slightly tighter text */
+@media (min-width: 768px) and (max-width: 899.98px) {
+  .testimonial-title {
+    font-size: 32px;
+  }
+
+  .quote-text {
+    font-size: 15px;
+  }
+}
+
+/* Large phones / small tablets (600px–767px): reduce paddings/avatars */
+@media (min-width: 600px) and (max-width: 767.98px) {
+  .testimonial-card {
+    padding: 44px 24px;
+  }
+
+  .testimonial-title {
+    font-size: 28px;
+  }
+
+  .avatar {
+    width: 84px;
+    height: 84px;
+  }
+
+  .user {
+    font-size: 16px;
+    padding: 12px 18px;
+  }
+}
+
+/* Phones (480px–599px): stack comfortably */
+@media (min-width: 480px) and (max-width: 599.98px) {
+  .testimonial-card {
+    padding: 36px 20px;
+  }
+
+  .testimonial-title {
+    font-size: 24px;
+  }
+
+  .quote-text {
+    font-size: 14px;
+  }
+
+  .avatar {
+    width: 72px;
+    height: 72px;
+  }
+
+  .user-list {
+    gap: 8px;
+  }
+
+  .user {
+    font-size: 15px;
+    padding: 12px 16px;
+  }
+
+  .feedback-badge {
+    font-size: 12px;
+    padding: 5px 10px;
+  }
+}
+
+/* Small phones (≤479px): compact typography and spacing */
+@media (max-width: 479.98px) {
+  .testimonial-section {
+    padding: 36px 14px;
+  }
+
+  .testimonial-card {
+    padding: 28px 16px;
+  }
+
+  .testimonial-title {
+    font-size: 22px;
+  }
+
+  .quote-text {
+    font-size: 13px;
+  }
+
+  .avatar {
+    width: 60px;
+    height: 60px;
+  }
+
+  .user-list {
+    gap: 6px;
+  }
+
+  .user {
+    font-size: 14px;
+    padding: 10px 14px;
+  }
+
+  .feedback-badge {
+    font-size: 11px;
+    padding: 4px 10px;
+  }
+}
+
+
+
+/* ----------- How It Works Section ---------- */
+
+.workflow-section {
+  font-family: 'Inter', sans-serif;
+  background-color: #ffffff;
+  margin: 0;
+  padding: 80px 20px;
+  min-height: 100vh;
+  margin-top: 400px;
+}
+
+.workflow-container {
+  max-width: 1200px;
+  width: 100%;
+  text-align: center;
+  margin: 0 auto;
+  /* THIS CENTERS THE BLOCK ELEMENT */
+}
+
+/* --- Header Section --- */
+.work-header {
+  margin-bottom: 50px;
+}
+
+.subtitle-pill {
+  font-family: 'Oswald', sans-serif;
+  display: inline-block;
+  background-color: #fff;
+  /* Light pink background */
+  color: var(--color-accent);
+  /* Accent Red */
+  font-size: 14px;
+  font-weight: 500;
+  padding: 4px 12px;
+  text-transform: uppercase;
+  box-shadow: 0px 8px 19px 0px #00000012;
+  letter-spacing: 0.7px;
+  line-height: 16.8px;
+  margin-bottom: 10px;
+}
+
+.main-title {
+  font-family: 'Oswald', sans-serif;
+  font-size: 48px;
+  font-weight: 500;
+  color: #6D6D6D;
+  line-height: 58px;
+  letter-spacing: 0%;
+  /* Dark Text */
+}
+
+/* --- Steps Grid (Desktop/Default) --- */
+.steps-grid {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+/* --- Individual Step --- */
+.step {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 30px;
+  flex-shrink: 0;
+  max-width: 250px;
+  /* Hardcoded desktop card width */
+}
+
+/* --- Card Container (Outer White Spacing and Border) --- */
+.card {
+  max-width: 200px;
+  height: 250px;
+  background-color: #ffffff;
+  /* White background for the 5px padding */
+  border-radius: 15px;
+  padding: 10px;
+  /* 5px white spacing around content */
+  position: relative;
+  overflow: hidden;
+  /* ADDED: 1px light gray border using box-shadow */
+  box-shadow: 0 0 0 1px #cccccc;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Half-Left Red Border using a pseudo-element */
+.card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  /* MODIFIED: Increased border thickness from 2px to 4px */
+  border: 4px solid var(--color-accent);
+  /* Accent Red, 4px thick border */
+  border-radius: 15px;
+  /* Clip the right half */
+  clip-path: polygon(0 0, 50% 0, 50% 100%, 0 100%);
+  z-index: 5;
+}
+
+/* --- Card Content (Inner Dark Area) --- */
+.card-content {
+  font-family: 'Kumbh Sans';
+  width: 100%;
+  background-color: #282828;
+  /* Dark Card */
+  color: #ffffff;
+  /* Light Text */
+  border-radius: calc(15px - 5px);
+  padding: 25px 15px;
+  height: 100%;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  text-align: center;
+  font-size: 15px;
+  line-height: 1.4;
+  position: relative;
+  letter-spacing: 0%;
+  z-index: 10;
+}
+
+.card-content p {
+  width: 100%;
+}
+
+/* Inner Red Icon/Image Wrapper */
+.icon-wrapper {
+  border-radius: 50%;
+  padding: 15px;
+  margin-bottom: 0px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Icon SVG Style */
+.icon-svg {
+  width: 30px;
+  height: 30px;
+  fill: #e62e49;
+  /* Accent Red */
+}
+
+/* --- Numbered Indicator Circle (Absolute Positioned, Left/Middle) --- */
+.step-number {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: unset;
+  transform: translate(-50%, -50%);
+
+  width: 35px;
+  height: 35px;
+  background-color: #ffffff;
+  color: #e62e49;
+  /* Accent Red text */
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 700;
+  font-size: 0.9rem;
+  z-index: 40;
+  box-shadow: 2px 4px 12px 0px #0000001F;
+
+  /* White ring to separate from card */
+}
+
+/* --- Arrow Connector --- */
+.step-connector {
+  position: relative;
+  align-self: center;
+  margin: 0 20px;
+  flex-shrink: 0;
+}
+
+
+
+/* --- Hide last arrow connector --- */
+.step:last-child+.step-connector,
+.step-connector:last-child {
+  display: none;
+}
+
+/* --- Responsiveness: Tablet (2-column layout) --- */
+@media (max-width: 1000px) {
+  .workflow-section {
+    margin-top: 300px
+  }
+}
+
+@media (max-width: 992px) {
+  .workflow-section {
+    margin-top: 50px
+  }
+}
+
+@media (max-width: 1350px) {
+  .steps-grid {
+    flex-wrap: wrap;
+    gap: 40px 20px;
+    /* Increase vertical gap */
+  }
+
+  .step {
+    max-width: calc(50% - 20px);
+    /* Two cards per row with 20px gap */
+    padding-top: 30px;
+  }
+
+  /* Hide arrows on stacked layout */
+  .step-connector {
+    display: none;
+  }
+
+  /* Adjust number position to the top-right corner when cards stack */
+  .step-number {
+    top: 0;
+    right: 0;
+    left: unset;
+    transform: translate(50%, -50%);
+    /* Move to top right corner */
+  }
+
+  /* Smaller Title for Tablet */
+  .main-title {
+    font-size: 2rem;
+  }
+
+  .step-number {
+    font-size: 0.8rem;
+    left: 40%;
+    border: 2px solid #e62e49;
+  }
+}
+
+/* --- Responsiveness: Mobile (1-column layout) --- */
+@media (max-width: 650px) {
+  .workflow-section {
+    padding: 40px 10px;
+    margin-top: -20px;
+  }
+
+  .step {
+    max-width: 100%;
+    /* Full width card */
+    margin-bottom: 20px;
+  }
+
+  .main-title {
+    font-size: 1.8rem;
+  }
+
+  .step-number {
+    font-size: 0.8rem;
+    left: 40%;
+    border: 2px solid #e62e49;
+  }
+
+}
+
+
+
+
+/* --- Order Now Section --- */
+/* Section container */
+.order-now {
+  margin-top: -300px;
+  padding: 0;
+  background-color: #000;
+  font-family: 'Kumbh Sans', sans-serif;
+}
+
+.order-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  color: #fff;
+  overflow: hidden;
+}
+
+/* Top & Bottom Brush Images */
+.order-top,
+.order-bottom {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Middle Content Block */
+.content-block {
+  position: relative;
+  width: 100%;
+  max-width: 1200px;
+  background: url("assets/order-bg.jpg") center center / cover no-repeat;
+  padding: 80px 20px;
+  z-index: 1;
+}
+
+/* Dark Overlay */
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  z-index: 1;
+}
+
+.content-wrapper {
+  position: relative;
+  z-index: 2;
+  max-width: 90%;
+  margin: 0 auto;
+}
+
+/* Text Styling */
+.title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  line-height: 1.2;
+}
+
+.subtitle {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 30px;
+  text-transform: uppercase;
+  line-height: 1.2;
+}
+
+.guarantee {
+  font-size: 1rem;
+  margin-bottom: 30px;
+  font-weight: 300;
+}
+
+/* CTA Button */
+.cta-button {
+  background-color: #ff0015;
+  color: #fff;
+  border: none;
+  padding: 15px 40px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.1s;
+  box-shadow: 0 4px 15px rgba(255, 0, 21, 0.4);
+}
+
+.cta-button:hover {
+  background-color: #cc0011;
+  transform: translateY(-2px);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .content-block {
+    padding: 60px 15px;
+  }
+
+  .title {
+    font-size: 1.8rem;
+  }
+
+  .subtitle {
+    font-size: 1.3rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .content-block {
+    padding: 40px 10px;
+  }
+
+  .title {
+    font-size: 1.4rem;
+  }
+
+  .subtitle {
+    font-size: 1rem;
+  }
+}
+
+/* Prevent text from being too wide on ultra-large screens */
+@media (min-width: 1440px) {
+  .content-block {
+    padding: 100px 40px;
+  }
+
+  .title {
+    font-size: 3rem;
+  }
+
+  .subtitle {
+    font-size: 2rem;
+  }
+}
+
+/* Super small devices */
+@media (max-width: 360px) {
+  .title {
+    font-size: 1.2rem;
+  }
+
+  .subtitle {
+    font-size: 0.9rem;
+  }
+
+  .cta-button {
+    padding: 10px 20px;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 439px) {
+  .order-now {
+    margin-top: 60px;
+  }
+}
+
+
+/* faq section  */
+
+.faq-section {
+  font-family: 'Oswald', sans-serif;
+  background-color: #fff;
+  margin: 0;
+  padding: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.faq-container {
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+  background: #fff;
+  padding: 40px;
+}
+
+/* Header Section */
+.faq-header {
+  text-align: center;
+  margin-bottom: 100px;
+}
+
+
+.faq-tag {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--color-accent);
+  background-color: white;
+  padding: 4px 12px;
+  border-radius: 50px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 10px;
+  box-shadow: 4px 6px 20px 0px #0000001F;
+}
+
+.faq-title {
+  font-size: 48px;
+  font-weight: 500;
+  color: #6D6D6D;
+  margin: 0;
+}
+
+/* Content Grid (List and Display Card) */
+.faq-content {
+  display: grid;
+  /* Left column is wider (1.2fr) than the right (0.8fr) */
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 40px;
+  position: relative;
+}
+
+/* FAQ List (Left Side) */
+.faq-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  background: #ffffff;
+  border: 1px solid #eee;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
+  overflow: hidden;
+
+}
+
+.faq-item {
+  cursor: pointer;
+  padding: 20px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #efefef;
+  transition: background-color 0.2s, color 0.2s;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--color-primary);
+  font-size: 16px;
+  font-family: 'Kumbh Sans';
+  font-weight: 400;
+  line-height: 140%;
+  letter-spacing: 0%;
+}
+
+.faq-item:last-child {
+  border-bottom: none;
+}
+
+.faq-item:hover {
+  background-color: #fff9fa;
+}
+
+/* Active/Selected Question */
+.faq-item.active {
+  color: var(--color-primary);
+  background: #ffecee;
+}
+
+/* Indicator Circle and Arrow Icon */
+.faq-icon-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.faq-indicator-circle {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background-color: #f1c2c2;
+  border: 2px solid #f1c2c2;
+  transition: background-color 0.2s, border-color 0.2s;
+  flex-shrink: 0;
+}
+
+.faq-item.active .faq-indicator-circle {
+  background-color: var(--color-accent);
+  border-color: var(--color-accent);
+}
+
+.faq-arrow {
+  color: #FFA3A3;
+  font-size: 2rem;
+  transition: color 0.2s;
+}
+
+.faq-item.active .faq-arrow {
+  color: var(--color-accent);
+}
+
+/* Answer Display Card (Right Side) */
+.faq-display-card {
+  font-family: 'Kumbh Sans';
+  background-color: #fff;
+  border-radius: 16px;
+  padding: 10px;
+  box-shadow: 0px 0px 4px 1px #00000026;
+
+
+  /* ADJUSTED: Pulled further up to create more prominent overlap */
+  margin-top: -40px;
+  margin-bottom: -60px;
+  /* ADJUSTED: More top padding to keep the content low inside the shifted card */
+  padding-top: 80px;
+  padding-left: 140px;
+  padding-right: 40px;
+  position: relative;
+  margin-left: -60px;
+  margin-right: -100px;
+  z-index: 1;
+}
+
+.faq-display-question {
+
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--color-primary);
+  margin-top: 0;
+  margin-bottom: 20px;
+  line-height: 1.4;
+}
+
+.faq-display-answer {
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--color-secondary);
+  line-height: 1.4;
+  /* NEW: Constrains text width for better readability on desktop */
+  max-width: 450px;
+  margin-left: auto;
+  /* Ensures text block is centered/contained */
+  margin-right: auto;
+
+}
+
+
+/* Responsive Adjustments */
+@media (max-width: 900px) {
+  .faq-content {
+    grid-template-columns: 1fr;
+    /* Single column layout on tablet/mobile */
+    gap: 30px;
+  }
+
+  /* Remove the negative margin on mobile layout so the card sits below the list */
+  .faq-display-card {
+    margin-top: 0;
+    padding-top: 40px;
+    background: #ffffff;
+    height: 30vh;
+    width: 100%;
+  }
+
+  .faq-display-answer {
+    /* Remove max-width constraint on smaller screens for better space utilization */
+    max-width: 100%;
+  }
+
+  /* Reset overlap on small screens */
+  .faq-list {
+    margin-right: 0;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+  }
+}
+
+@media (max-width: 992px){
+  .faq-display-card{
+    padding-left: 40px;
+    margin-left: 0;
+  }
+}
+/* Desktop/Laptop: create slight horizontal overlap and soft pink overlay */
+@media (min-width: 992px) {
+  .faq-content {
+    grid-template-columns: 1.1fr 0.9fr;
+  }
+
+  /* Overlap the list over the answer card a bit */
+  .faq-list {
+    margin-right: -60px;
+    /* pulls over the card */
+    z-index: 2;
+    /* above the card */
+  }
+
+  /* Pink overlay look only for larger screens */
+  .faq-display-card {
+    background: #FFFAFA;
+    box-shadow: 0px 0px 4px 1px #00000026;
+
+
+  }
+}
+
+@media (max-width: 600px) {
+  body {
+    padding: 20px;
+  }
+
+  .faq-container {
+    padding: 20px;
+  }
+
+  .faq-title {
+    font-size: 2rem;
+  }
+
+  .faq-display-card {
+    padding: 30px;
+  }
+}
+
+/* Utility for SVG/Icons (Right Arrow) */
+.faq-svg-icon {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  fill: currentColor;
+  vertical-align: middle;
 }
