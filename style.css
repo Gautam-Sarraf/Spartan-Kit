@@ -109,6 +109,7 @@ button {
   object-fit: contain;
   z-index: 2;
   position: relative;
+  cursor: pointer;
 }
 
 /* ----------- Center Content (Desktop) ----------- */
@@ -196,6 +197,7 @@ button {
 .social-icons {
   display: flex;
   gap: 12px;
+  cursor: pointer;
 }
 
 .social-icons img {
@@ -734,7 +736,8 @@ button {
     margin: 0;
     background: #fff;
     z-index: 3000;
-    padding-top: 70px; /* make room for drawer logo */
+    padding-top: 70px;
+    /* make room for drawer logo */
     transform: translate3d(-100%, 0, 0);
     transition: transform 0.35s ease;
     display: block;
@@ -762,8 +765,9 @@ button {
   }
 
   .nav-content {
-    align-items: flex-end;
-    padding: 24px 20px 24px 20px; /* extra top padding handled on container */
+    align-items: flex-start;
+    padding: 24px 20px 24px 20px;
+    /* extra top padding handled on container */
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -774,8 +778,8 @@ button {
   .nav-links {
     flex-direction: column;
     gap: 16px;
-    text-align: right;
-    align-items: flex-end;
+    text-align: left;
+    align-items: flex-start;
     width: 100%;
   }
 
@@ -1156,12 +1160,12 @@ button {
 }
 
 /* Let individual cards size nicely for 3-up rows when space allows */
-.features-grid > .feature-card {
+.features-grid>.feature-card {
   flex: 1 1 360px;
 }
 
 /* Ensure the bottom group spans its own row and centers its inner cards */
-.features-grid > .bottom-cards {
+.features-grid>.bottom-cards {
   /* Flatten wrapper so its children behave like direct flex items */
   display: contents;
 }
@@ -1311,7 +1315,7 @@ button {
     gap: 20px;
   }
 
-  .features-grid > .feature-card {
+  .features-grid>.feature-card {
     flex: 1 1 100%;
     max-width: 100%;
   }
@@ -1341,13 +1345,13 @@ button {
   }
 
   /* Two columns on tablet width */
-  .features-grid > .feature-card {
+  .features-grid>.feature-card {
     flex: 1 1 calc(50% - 36px);
     max-width: calc(50% - 36px);
   }
 
   /* Unify sizing across all five cards on tablet */
-  .features-grid > .feature-card {
+  .features-grid>.feature-card {
     min-height: unset;
     padding-bottom: 130px;
   }
@@ -1370,12 +1374,12 @@ button {
   }
 
   /* Back to 3-up layout on desktop */
-  .features-grid > .feature-card {
+  .features-grid>.feature-card {
     flex: 1 1 360px;
     max-width: 379px;
   }
 }
- 
+
 
 /* Extra-large devices (large laptops and desktops, 1200px and up) */
 @media only screen and (min-width: 1200px) {
@@ -1666,7 +1670,8 @@ button {
 .testimonial-content {
   text-align: center;
   position: relative;
-  overflow: hidden; /* viewport for slide animation */
+  overflow: hidden;
+  /* viewport for slide animation */
 }
 
 .avatar {
@@ -1744,13 +1749,27 @@ button {
 }
 
 @keyframes slideOutLeft {
-  0% { transform: translateX(0); opacity: 1; }
-  100% { transform: translateX(-30%); opacity: 0; }
+  0% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateX(-30%);
+    opacity: 0;
+  }
 }
 
 @keyframes slideInRight {
-  0% { transform: translateX(30%); opacity: 0; }
-  100% { transform: translateX(0); opacity: 1; }
+  0% {
+    transform: translateX(30%);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
 }
 
 .slide-out-left {
@@ -2235,10 +2254,12 @@ button {
 
   .step-number {
     font-size: 0.8rem;
-    left: 40%;
+    left: 30%;
     border: 2px solid #e62e49;
   }
 }
+
+  
 
 /* --- Responsiveness: Mobile (1-column layout) --- */
 @media (max-width: 650px) {
@@ -2259,7 +2280,7 @@ button {
 
   .step-number {
     font-size: 0.8rem;
-    left: 40%;
+    left: 30%;
     border: 2px solid #e62e49;
   }
 
@@ -2271,7 +2292,7 @@ button {
 /* --- Order Now Section --- */
 /* Section container */
 .order-now {
-  margin-top: -300px;
+  /* margin-top: 10px; */
   padding: 0;
   background-color: #000;
   font-family: 'Kumbh Sans', sans-serif;
@@ -2308,7 +2329,7 @@ button {
 .overlay {
   position: absolute;
   inset: 0;
-  background: rgba(0, 0, 0, 0.55);
+  /* background: rgba(0, 0, 0, 0.55); */
   z-index: 1;
 }
 
@@ -2442,7 +2463,7 @@ button {
 }
 
 .faq-container {
-  max-width: 1200px;
+  max-width: 1440px;
   width: 100%;
   margin: 0 auto;
   background: #fff;
@@ -2579,11 +2600,11 @@ button {
   margin-bottom: -60px;
   /* ADJUSTED: More top padding to keep the content low inside the shifted card */
   padding-top: 80px;
-  padding-left: 140px;
-  padding-right: 40px;
+  padding-left: 123px;
+  padding-right: 12px;
   position: relative;
   margin-left: -60px;
-  margin-right: -100px;
+  margin-right: 0px;
   z-index: 1;
 }
 
@@ -2609,6 +2630,7 @@ button {
   margin-right: auto;
 
 }
+
 
 
 /* Responsive Adjustments */
@@ -2640,12 +2662,13 @@ button {
   }
 }
 
-@media (max-width: 992px){
-  .faq-display-card{
+@media (max-width: 992px) {
+  .faq-display-card {
     padding-left: 40px;
     margin-left: 0;
   }
 }
+
 /* Desktop/Laptop: create slight horizontal overlap and soft pink overlay */
 @media (min-width: 992px) {
   .faq-content {
@@ -2674,9 +2697,16 @@ button {
     padding: 20px;
   }
 
+  .faq-section {
+    padding: 0px;
+  }
+
   .faq-container {
     padding: 20px;
+    width: 100%;
+
   }
+
 
   .faq-title {
     font-size: 2rem;
@@ -2684,6 +2714,7 @@ button {
 
   .faq-display-card {
     padding: 30px;
+    height: fit-content;
   }
 }
 
