@@ -1601,7 +1601,7 @@ button {
   }
 
   .products-grid {
-    padding: 0 60px;
+    /* padding: 0 60px; */
   }
 
   .product-card {
@@ -2869,12 +2869,11 @@ a:hover {
   margin-bottom: 15px;
   background-color: #333;
   border-radius: 50%;
-  width: 50px;
-  height: 50px;
+  width: 70px;
+  height: 70px;
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid var(--color-accent);
 }
 
 .info-card-header {
@@ -3121,6 +3120,10 @@ a:hover {
 
 /* Mobile/Small Screens (Max 600px) */
 @media (max-width: 600px) {
+
+  .footer-section{
+    margin-top: 70px;
+  }
 
   /* Top Section: 2 columns -> 1 column */
   .footer-info-grid {
