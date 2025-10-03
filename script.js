@@ -193,6 +193,50 @@ document.addEventListener('DOMContentLoaded', () => {
             // ensure initial layout has the active user centered
             reorderUsers(activeIndex);
 
+            // --- Lock quote container height to avoid title shifting ---
+            const contentContainer = document.querySelector('.testimonial-card .testimonial-content');
+            const calcAndLockContentHeight = () => {
+                if (!contentContainer) return;
+
+                // Ensure container can grow naturally (don't clip user list)
+                contentContainer.style.height = '';
+
+                // Create a measuring clone of the quote block within the same container
+                const probe = quoteEl.cloneNode(true);
+                // Keep same width context but take it out of normal flow
+                probe.style.position = 'absolute';
+                probe.style.left = '-9999px';
+                probe.style.top = '0';
+                probe.style.opacity = '0';
+                probe.style.animation = 'none';
+                // Ensure width matches actual quote width for accurate wrapping
+                probe.style.width = getComputedStyle(quoteEl).width;
+                contentContainer.appendChild(probe);
+
+                let maxH = 0;
+                const probeTextEl = probe.querySelector('.quote-text');
+                if (!probeTextEl) {
+                    // Fallback: use current quote height
+                    maxH = quoteEl.clientHeight;
+                } else {
+                    testimonials.forEach(t => {
+                        probeTextEl.textContent = t.quote;
+                        // Measure after text update
+                        const h = probe.offsetHeight;
+                        if (h > maxH) maxH = h;
+                    });
+                }
+
+                // Apply min-height on the quote only; this keeps the title and user list stable and visible
+                quoteEl.style.minHeight = maxH + 'px';
+
+                // Cleanup
+                contentContainer.removeChild(probe);
+            };
+
+            // Initial lock after initial DOM arrangement
+            calcAndLockContentHeight();
+
             // smoother animation config
             const ANIM_EASE = 'cubic-bezier(0.22, 1, 0.36, 1)'; // easeOutQuint-like
             const ANIM_MS = 520; // a bit longer for smoothness
@@ -233,6 +277,8 @@ document.addEventListener('DOMContentLoaded', () => {
                         quoteEl.style.animationDuration = '';
                         quoteEl.style.animationTimingFunction = '';
                         isAnimating = false;
+                        // Make sure height remains correct even if fonts/wrap changed
+                        calcAndLockContentHeight();
                     };
                     quoteEl.addEventListener('animationend', onInEnd, { once: true });
                 };
@@ -300,6 +346,15 @@ document.addEventListener('DOMContentLoaded', () => {
             // Respect reduced motion
             const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)');
             if (!prefersReduced.matches) startAutoplay();
+
+            // Recalculate locked height on resize (debounced)
+            let resizeTO = null;
+            window.addEventListener('resize', () => {
+                if (resizeTO) clearTimeout(resizeTO);
+                resizeTO = setTimeout(() => {
+                    calcAndLockContentHeight();
+                }, 150);
+            });
         }
     } catch (e) {
         // Fail-safe: keep placeholder visible if something goes wrong
