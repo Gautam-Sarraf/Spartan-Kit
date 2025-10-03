@@ -5,8 +5,15 @@
   box-sizing: border-box;
 }
 
+/* Remove extra right padding on hero image for tablet/phone to prevent horizontal overflow */
+@media (max-width: 992px) {
+  .hero-right img {
+    padding-right: 0;
+  }
+}
+
 body {
-  font-family: "kumbh sans", sans-serif;
+  font-family: "kumbh sans","Oswald", sans-serif;
   color: #1c1c1c;
   width: 100%;
   overflow-x: hidden;
@@ -14,6 +21,8 @@ body {
 
 html {
   scroll-behavior: smooth;
+  /* Ensure no horizontal scroll from any off-canvas element */
+  overflow-x: hidden;
 }
 
 a {
@@ -24,7 +33,7 @@ a {
 button {
   border: none;
   cursor: pointer;
-  font-family: "Kanit", sans-serif;
+  font-family: "kumbh sans", sans-serif;
 }
 
 .hidden {
@@ -229,9 +238,12 @@ button {
   gap: 35px;
   flex-wrap: wrap;
   justify-content: flex-start;
+  color: #000;
 }
 
 .nav-links a {
+  font-family: "Kumbh Sans", sans-serif;
+  font-weight: 400;
   font-size: 16px;
   transition: color .3s ease;
 }
@@ -341,6 +353,7 @@ button {
   gap: 30px;
   justify-content: center;
   flex-wrap: wrap;
+
 }
 
 .nav-links a {
@@ -1149,13 +1162,18 @@ button {
 }
 
 .features-kicker {
+  font-family: "Oswald";
   display: inline-block;
-  font-size: 12px;
-  font-weight: 800;
-  letter-spacing: 1.4px;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.7px;
   text-transform: uppercase;
   color: var(--color-accent);
+  border-radius: 50px;
+  box-shadow: 0px 8px 19px 0px #00000012;
+  padding: 8px 20px 6px 20px;
 }
+
 
 .features-title {
   font-family: "Oswald";
@@ -1445,12 +1463,12 @@ button {
   z-index: 1;
 }
 
-.products-overlay {
+/* .products-overlay {
   position: absolute;
   inset: 0;
   background: rgba(0, 0, 0, 0.65);
   z-index: 0;
-}
+} */
 
 /* Header */
 .products-header {
@@ -1702,6 +1720,53 @@ button {
   object-fit: cover;
 }
 
+/* Avatar wrapper to anchor the quotation badge */
+.avatar-wrap {
+  position: relative;
+  display: inline-block;
+}
+
+/* Circular quotation badge anchored to avatar's top-left */
+.avatar-quote-badge {
+  position: absolute;
+  top: -8px;
+  left: -8px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--color-accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  z-index: 2;
+}
+
+.avatar-quote-badge img {
+  width: 14px;
+  height: 14px;
+  display: block;
+}
+
+@media (max-width: 600px) {
+  .avatar {
+    width: 100px;
+    height: 100px;
+  }
+
+  .avatar-quote-badge {
+    top: -6px;
+    left: -6px;
+    width: 26px;
+    height: 26px;
+  }
+
+  .avatar-quote-badge img {
+    width: 12px;
+    height: 12px;
+  }
+}
+
 .quote-text {
   font-family: "Kumbh Sans";
   font-size: 16px;
@@ -1766,6 +1831,7 @@ button {
 /* --- Testimonial carousel animations --- */
 .quote {
   will-change: transform, opacity;
+  padding-top: 20px;
 }
 
 @keyframes slideOutLeft {
@@ -2369,7 +2435,8 @@ button {
   text-transform: uppercase;
   line-height: 1.2;
   letter-spacing: 0%;
-  width: 103%;
+  /* Prevent horizontal overflow on small screens */
+  width: 100%;
 }
 
 .subtitle {
@@ -2441,13 +2508,13 @@ button {
 }
 
 /* Prevent text from being too wide on ultra-large screens */
-@media (min-width: 1440px) {
+@media (min-width: 1441px) {
   .content-block {
     padding: 100px 40px;
   }
 
   .title {
-    font-size: 3rem;
+    font-size: 2.5rem;
   }
 
   .subtitle {
@@ -2718,9 +2785,6 @@ button {
 }
 
 @media (max-width: 600px) {
-  body {
-    padding: 20px;
-  }
 
   .faq-section {
     padding: 0px;
@@ -2775,8 +2839,8 @@ button {
 
 }
 
-a {
-  color: var(--color-secondary);
+.footer-heading a {
+  color: var(--color-background);
   text-decoration: none;
   transition: color 0.2s;
 }
@@ -2802,8 +2866,17 @@ a:hover {
   display: block;
 }
 
-/* The CSS background effect from the previous version is removed
- since the brush stroke is now an HTML <img> tag as requested. */
+/* Sub-pixel seam fix for brush images (top/bottom). Overlaps by 3px without changing layout visually */
+.products-top,
+.order-top,
+.brush-stroke-divider img {
+  margin-top: -3px;
+}
+
+.products-bottom,
+.order-bottom {
+  margin-bottom: -3px;
+}
 
 
 /* ==================================
@@ -2854,7 +2927,7 @@ a:hover {
   border-left: 1px solid #545454;
   min-height: 150px;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: flex-start;
 }
 
@@ -2862,6 +2935,7 @@ a:hover {
 .info-card:first-child {
   border-left: none;
 }
+
 
 .info-card i {
   font-size: 24px;
@@ -2876,6 +2950,10 @@ a:hover {
   justify-content: center;
 }
 
+.info-card-content-container {
+  padding-left: 20px;
+}
+
 .info-card-header {
   font-size: 1.1rem;
   font-weight: bold;
@@ -2884,8 +2962,12 @@ a:hover {
 }
 
 .info-card-content {
+  font-family: 'Kumbh Sans';
+  font-weight: 400;
   color: var(--color-white);
   font-size: 0.95rem;
+  color: #F5F5F5;
+  opacity: 0.8;
 }
 
 .info-card-content span {
@@ -2969,10 +3051,15 @@ a:hover {
 .footer-heading {
   font-size: 1.2rem;
   font-weight: 600;
-  margin-bottom: 25px;
+  margin-bottom: 30px;
   text-transform: uppercase;
+  padding-bottom: 10px;
 }
 
+.for-border {
+  border-bottom: 4px solid #f0ecec;
+  padding-bottom: 8px;
+}
 /* --- Column 3: Gallery --- */
 .gallery-grid {
   display: grid;
@@ -3020,8 +3107,10 @@ a:hover {
 
 /* --- Column 4: Newsletter --- */
 .col-newsletter p {
-  color: var(--text-secondary);
-  font-size: 0.9rem;
+  font-family: 'Kumbh Sans', sans-serif;
+  color: #7B7E86;
+  font-size: 14px;
+  line-height: 140%;
   margin-bottom: 20px;
 }
 
