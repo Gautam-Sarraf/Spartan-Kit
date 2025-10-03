@@ -169,7 +169,7 @@ button {
   position: relative;
   justify-content: space-between;
   align-items: center;
-  gap: 20px;
+  gap: 10px;
   flex-wrap: wrap;
   padding: 12px;
 }
@@ -198,6 +198,9 @@ button {
   font-size: 14px;
 }
 
+.info-item img{
+  padding-top: 4px;
+}
 .social-section {
   display: flex;
   align-items: center;
@@ -230,7 +233,7 @@ button {
   padding: 0px;
   padding-left: 30px;
   padding-right: 30px;
-  padding-bottom: 30px;
+  padding-bottom: 10px;
 }
 
 .nav-links {
@@ -2111,7 +2114,7 @@ button {
   background-color: #ffffff;
   margin: 0;
   padding: 80px 20px;
-  min-height: 100vh;
+  /* min-height: 100vh; */
   margin-top: 400px;
 }
 
