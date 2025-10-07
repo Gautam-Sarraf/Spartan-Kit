@@ -972,6 +972,7 @@ button {
   font-weight: 400;
   letter-spacing: 1.5px;
   text-transform: uppercase;
+  padding-bottom: 20px;
 }
 
 .hero-subtitle .dot {
@@ -1182,7 +1183,7 @@ button {
   font-family: "Oswald";
   font-size: 48px;
   line-height: 58px;
-  font-style: medium;
+  font-weight: 500;
   margin-top: 10px;
   color: var(--color-primary);
 }
@@ -1206,7 +1207,6 @@ button {
 
 /* Ensure the bottom group spans its own row and centers its inner cards */
 .features-grid>.bottom-cards {
-  /* Flatten wrapper so its children behave like direct flex items */
   display: contents;
 }
 
@@ -1215,7 +1215,7 @@ button {
   position: relative;
   background: #ffffff;
   /* Use min-height to preserve desktop proportions but allow growth */
-  min-height: 419px;
+  min-height: 382px;
   border-radius: 18px;
   /* Increase bottom padding to make room for absolute link and foot */
   padding: 28px 50px 120px;
@@ -1377,28 +1377,6 @@ button {
   }
 }
 
-/* Small devices (≥600px) */
-@media only screen and (min-width: 600px) and (max-width: 991.98px) {
-  .features-grid {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 36px;
-    justify-content: center;
-    align-items: stretch;
-  }
-
-  /* Two columns on tablet width */
-  .features-grid>.feature-card {
-    flex: 1 1 calc(50% - 36px);
-    max-width: calc(50% - 36px);
-  }
-
-  /* Unify sizing across all five cards on tablet */
-  .features-grid>.feature-card {
-    min-height: unset;
-    padding-bottom: 130px;
-  }
-}
 
 /* Medium devices (≥768px) */
 @media only screen and (min-width: 768px) {
@@ -1437,6 +1415,11 @@ button {
   }
 }
 
+@media (max-width: 768px) {
+  .features-title {
+    font-size: 36px;
+  }
+}
 
 /* ================= PRODUCTS SECTION ================= */
 /* Paste from here (keep your existing code above intact) */
@@ -1449,6 +1432,8 @@ button {
   display: flex;
   flex-direction: column;
   align-items: center;
+  background-position: 0% 0%;
+  background-size: 120%;
 }
 
 /* Top & Bottom Brushes */
@@ -1469,12 +1454,13 @@ button {
   z-index: 1;
 }
 
-/* .products-overlay {
+.products-overlay {
   position: absolute;
   inset: 0;
   background: rgba(0, 0, 0, 0.65);
   z-index: 0;
-} */
+  opacity: 0.5;
+}
 
 /* Header */
 .products-header {
@@ -1663,7 +1649,7 @@ button {
 }
 
 .testimonial-bg img {
-  width: 100%;
+  width: 96%;
   height: auto;
   border-radius: 12px;
   display: block;
@@ -1676,8 +1662,8 @@ button {
   background-position: center;
   position: absolute;
   top: 100%;
-  right: 0;
-  transform: translateY(-50%);
+  right: -20px;
+  transform: translateY(-60%);
   color: #fff;
   border-radius: 30px;
   padding: 80px 30px 110px;
@@ -1694,7 +1680,7 @@ button {
   background: #fdfcfc;
   color: var(--color-accent);
   font-size: 14px;
-  font-weight: bold;
+  font-weight: 500;
   padding: 6px 14px;
   border-radius: 20px;
   display: inline-block;
@@ -1707,7 +1693,7 @@ button {
   font-family: "Oswald";
   font-size: 48px;
   margin-bottom: 20px;
-  font-weight: 700;
+  font-weight: 500;
 }
 
 /* Quote Section */
@@ -1908,7 +1894,7 @@ button {
   }
 
   .testimonial-card {
-    max-width: 820px;
+    max-width: 775px;
     padding: 90px 36px;
   }
 
@@ -2177,7 +2163,6 @@ button {
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  gap: 20px;
 }
 
 /* --- Individual Step --- */
@@ -2230,7 +2215,6 @@ button {
   background-color: #282828;
   /* Dark Card */
   color: #ffffff;
-  /* Light Text */
   border-radius: calc(15px - 5px);
   padding: 25px 15px;
   height: 100%;
@@ -2245,6 +2229,8 @@ button {
   position: relative;
   letter-spacing: 0%;
   z-index: 10;
+  box-shadow: 0px 4px 40px 0px #0000001F;
+
 }
 
 .card-content p {
@@ -2272,7 +2258,7 @@ button {
 /* --- Numbered Indicator Circle (Absolute Positioned, Left/Middle) --- */
 .step-number {
   position: absolute;
-  top: 50%;
+  top: 55%;
   left: 0;
   right: unset;
   transform: translate(-50%, -50%);
@@ -2287,11 +2273,10 @@ button {
   justify-content: center;
   align-items: center;
   font-weight: 700;
-  font-size: 0.9rem;
+  font-size: 1rem;
   z-index: 40;
   box-shadow: 2px 4px 12px 0px #0000001F;
 
-  /* White ring to separate from card */
 }
 
 /* --- Arrow Connector --- */
@@ -2300,6 +2285,7 @@ button {
   align-self: center;
   margin: 0 20px;
   flex-shrink: 0;
+  top: 16px;
 }
 
 
@@ -2426,6 +2412,8 @@ button {
   background: url("assets/order-bg.jpg") center center / cover no-repeat;
   padding: 80px 20px;
   z-index: 1;
+  background-position: 73% 11%;
+  background-size: 130%;
 }
 
 /* Dark Overlay */
@@ -2579,7 +2567,7 @@ button {
   width: 100%;
   margin: 0 auto;
   background: #fff;
-  padding: 40px;
+  padding: 80px;
 }
 
 /* Header Section */
@@ -2850,9 +2838,9 @@ button {
   max-width: 1400px;
   margin: 0 auto;
   background-image: url('assets/dark-figure-bg.jpg');
-  background-size: cover;
-  background-position: center;
-  background-repeat: repeat-x;
+  background-size: 106% 100%;
+  background-position: -41% 0%;
+  background-repeat: no-repeat;
 
 }
 
@@ -2902,7 +2890,7 @@ a:hover {
 .footer-top {
   /* background-color: var(--color-primary); */
   padding: 40px;
-  border-bottom: 1px solid #545454;
+  /* border-bottom: 1px solid #545454; */
   position: relative;
   z-index: 5;
   overflow: hidden;
@@ -2934,6 +2922,7 @@ a:hover {
   gap: 20px;
   position: relative;
   z-index: 2;
+  border-bottom: 1px solid #545454;
   /* Keep content above the background image */
 }
 
@@ -2946,6 +2935,10 @@ a:hover {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
+}
+
+.info-card-pad {
+  padding-top:37px;
 }
 
 /* Remove border from the first item on desktop */
@@ -2995,7 +2988,7 @@ a:hover {
  2. FOOTER BOTTOM (Grid/Flex Layout)
  ================================== */
 .footer-bottom {
-  padding: 60px var(--padding-x);
+  padding: 90px var(--padding-x);
   /* background-color: var(--color-primary); */
 }
 
@@ -3017,8 +3010,9 @@ a:hover {
 
 .col-about p {
   color: #7B7E86;
-  font-size: 0.9rem;
+  font-size: 15px;
   margin-bottom: 25px;
+  font-family: 'Kumbh Sans';
 }
 
 .social-links {
